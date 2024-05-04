@@ -52,6 +52,7 @@ export default function App() {
           <Button
             size={"sm"}
             aria-label="workspace folder"
+            onClick={() => setRoute("recentFlows")}
           >
             <HStack gap={1}>
               <IconFolder size={20} />
@@ -108,8 +109,8 @@ function CustomNodesDrawer({
   return (
     <div style={{ position: "absolute", top: 0, left: 0, right: 0 }}>
       <Drawer
-        isOpen={true}
-        placement="right"
+        isOpen={false}
+        placement="left"
         onClose={() => onclose()}
         size={"sm"}
       >
