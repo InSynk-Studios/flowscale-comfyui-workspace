@@ -7,11 +7,11 @@ document.body.append(topbar);
 const App = React.lazy(() =>
   import("./App.tsx").then(({ default: App }) => ({
     default: App,
-  })),
+  }))
 );
 
 ReactDOM.createRoot(topbar).render(
   <React.StrictMode>
-      <App />
+    <App />
   </React.StrictMode>
 );

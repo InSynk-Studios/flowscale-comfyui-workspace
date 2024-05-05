@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, TextInput } from "@primer/react";
 import { TriangleDownIcon, PlusIcon, FileIcon } from "@primer/octicons-react";
-import RecentFilesDrawer from "./RecentFilesDrawer";
+import { MainDrawer } from "@/features/misc"
 
 type Route = "root" | "customNodes" | "recentFlows";
 
@@ -19,6 +19,7 @@ export default function App() {
       }}
     >
       <div
+        className="tw-class"
         style={{
           padding: 2,
           position: "fixed",
@@ -59,12 +60,13 @@ export default function App() {
       </div>
 
       {route === "recentFlows" && (
-        <RecentFilesDrawer
-          onclose={() => setRoute("root")}
-          onClickNewFlow={() => {
-            setRoute("root");
-          }}
-        />
+        // <RecentFilesDrawer
+        //   onclose={() => setRoute("root")}
+        //   onClickNewFlow={() => {
+        //     setRoute("root");
+        //   }}
+        // />
+        <MainDrawer />
       )}
     </div>
   );
