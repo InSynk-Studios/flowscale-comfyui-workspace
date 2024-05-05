@@ -30,6 +30,7 @@ export const MainDrawer = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box
+        className="z-10"
         sx={{
           display: "flex",
           height: "100vh",
