@@ -1,34 +1,15 @@
 import { useState } from "react";
-// @ts-ignore
-import { app } from "/scripts/app.js";
-// @ts-ignore
-import {
-  HStack,
-  Input,
-  Box,
-  Drawer,
-  DrawerBody,
-  Button,
-  DrawerHeader,
-  DrawerOverlay,
-  Text,
-  Checkbox,
-  DrawerContent,
-  DrawerCloseButton,
-} from "@chakra-ui/react";
-import {
-  IconFolder,
-  IconPlus,
-  IconTriangleInvertedFilled,
-} from "@tabler/icons-react";
+import { Button, TextInput } from "@primer/react";
+import { TriangleDownIcon, PlusIcon, FileIcon } from "@primer/octicons-react";
 import RecentFilesDrawer from "./RecentFilesDrawer";
+
 type Route = "root" | "customNodes" | "recentFlows";
 
 export default function App() {
   const [route, setRoute] = useState<Route>("root");
 
   return (
-    <Box
+    <div
       style={{
         width: "100vh",
         position: "absolute",
@@ -37,48 +18,45 @@ export default function App() {
         right: 0,
       }}
     >
-      <HStack
+      <div
         style={{
-          padding: 8,
+          padding: 2,
           position: "fixed",
           top: 0,
           left: 0,
           right: 0,
+          justifyContent: "space-between",
+          display: "flex",
         }}
-        justifyContent={"space-between"}
-        gap={4}
       >
-        <HStack>
+        <div>
           <Button
-            size={"sm"}
-            aria-label="workspace folder"
+            size="small"
             onClick={() => setRoute("recentFlows")}
+            style={{ borderColor: 'white', color: 'black' }}
           >
-            <HStack gap={1}>
-              <IconFolder size={20} />
-              <IconTriangleInvertedFilled size={8} />
-            </HStack>
+            <div>
+              <FileIcon size={16} />
+              <TriangleDownIcon size={16} />
+            </div>
           </Button>
           <Button
-            size={"sm"}
-            variant={"outline"}
-            colorScheme="teal"
-            aria-label="workspace folder"
+            size="small"
+            style={{ borderColor: 'white', color: 'black' }}
           >
-            <HStack gap={1} px={3}>
-              <IconPlus size={16} color={"white"} />
-              <Text color={"white"} fontSize={"sm"}>
+            <div style={{ paddingLeft: 2 }}>
+              <PlusIcon size={16}  />
+              <div  style={{ fontSize: 1 }}>
                 New
-              </Text>
-            </HStack>
+              </div>
+            </div>
           </Button>
-          <Input
-            variant="unstyled"
+          <TextInput
+            variant="small"
             placeholder="Workflow name"
-            color={"white"}
           />
-        </HStack>
-      </HStack>
+        </div>
+      </div>
 
       {route === "recentFlows" && (
         <RecentFilesDrawer
@@ -88,56 +66,6 @@ export default function App() {
           }}
         />
       )}
-
-      <CustomNodesDrawer
-        isOpen={true}
-        onclose={() => {
-          setRoute("root");
-        }}
-      />
-    </Box>
-  );
-}
-
-type CustomNodesDrawerProps = {
-  onclose: () => void;
-  isOpen: boolean;
-};
-function CustomNodesDrawer({
-  onclose,
-}: CustomNodesDrawerProps) {
-  return (
-    <div style={{ position: "absolute", top: 0, left: 0, right: 0 }}>
-      <Drawer
-        isOpen={false}
-        placement="left"
-        onClose={() => onclose()}
-        size={"sm"}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Custom Nodes</DrawerHeader>
-          <DrawerBody>
-            <HStack mb={3}>
-              <Checkbox
-                mr={6}
-                isChecked={false}
-              >
-                Select All
-              </Checkbox>
-              <Button
-              >
-                Install Missing Nodes
-              </Button>
-            </HStack>
-            <Text mb={3} color={"GrayText"} fontSize={"small"}>
-              Unselectable nodes are not found in Github, they may be private
-              repos
-            </Text>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </div>
   );
 }

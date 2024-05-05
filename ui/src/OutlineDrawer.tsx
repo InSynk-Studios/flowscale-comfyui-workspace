@@ -1,29 +1,11 @@
-import {
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  Text,
-  Stack,
-  Button,
-  HStack,
-  IconButton,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverHeader,
-  PopoverBody,
-  Popover,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, Button, Overlay, Text, useOverlay, useTheme } from '@primer/react'
+import React, { useEffect, useState } from "react";
 import { Workflow, deleteFlow, listWorkflows, workspace } from "./WorkspaceDB";
 
 type Props = {
   onclose: () => void;
 };
+
 export default function RecentFilesDrawer({ onclose }: Props) {
   const [recentFlows, setRecentFlow] = useState<Workflow[]>([]);
 
@@ -33,25 +15,19 @@ export default function RecentFilesDrawer({ onclose }: Props) {
   }, []);
 
   return (
-    <div style={{ position: "absolute", top: 0, left: 0, right: 0 }}>
-      <Drawer
-        isOpen={true}
-        placement="right"
-        onClose={() => onclose()}
-        size={"sm"}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Models and Resources</DrawerHeader>
-          <DrawerBody>
-            <Text>Custom Nodes</Text>
-            <Text>Checkpoints</Text>
-            <Text>Loras</Text>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </div>
+    <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
+      
+        <Overlay returnFocusRef={React.createRef()} onClickOutside={() => {}} onEscape={() => {}}>
+          <Button sx={{ position: 'absolute', right: 2 }}>
+            Close
+          </Button>
+          {/* Rest of your drawer content */}
+        </Overlay>
+
+      <Button>
+        Open Drawer
+      </Button>
+    </Box>
   );
 }
 

@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from 'path';
 
 const rewriteImportPlugin = ({ isDev }) => {
   return {
@@ -23,6 +24,11 @@ const rewriteImportPlugin = ({ isDev }) => {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   envDir: ".",
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src')
+    }
+  },
   build: {
     watch: {
       include: ["src/**"],
