@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from services import git_service as gs
+from services import git as gs
 
 bp = Blueprint("git", __name__)
 
@@ -20,6 +20,14 @@ def create_commit():
     return {"message": f"Commit {oid} created."}, 200
 
 
+@bp.route("/create_commit_all", methods=["POST"])
+def create_commit_all():
+    repo_name = request.json["repo_name"]
+    message = request.json["message"]
+    oid = gs.create_commit_all_service(repo_name, message)
+    return {"message": f"Commit {oid} created."}, 200
+
+
 @bp.route("/push", methods=["POST"])
 def push_to_remote():
     repo_name = request.json["repo_name"]
@@ -31,6 +39,7 @@ def push_to_remote():
 @bp.route("/log", methods=["GET"])
 def git_log():
     repo_name = request.args.get("repo_name")
+    print(repo_name)
     logs = gs.git_log_service(repo_name)
     return {"logs": logs}, 200
 
@@ -86,3 +95,36 @@ def add_remote():
     url = request.json["url"]
     gs.add_remote_service(repo_name, remote_name, url)
     return {"message": f"Remote {remote_name} added."}, 200
+
+
+@bp.route("/checkout_branch", methods=["POST"])
+def checkout_branch():
+    repo_name = request.json["repo_name"]
+    branch_name = request.json["branch_name"]
+    if_branch = gs.checkout_branch(repo_name, branch_name)
+    if if_branch:
+        return {"message": f"Checked out branch {branch_name}."}, 200
+    return {"message": f"Branch {branch_name} not found."}, 404
+
+
+@bp.route("/create_branch", methods=["POST"])
+def create_branch():
+    repo_name = request.json["repo_name"]
+    new_branch_name = request.json["new_branch_name"]
+    gs.create_branch_service(repo_name, new_branch_name)
+    return {"message": f"Created branch {new_branch_name}."}, 200
+
+
+@bp.route("/delete_branch", methods=["POST"])
+def delete_branch():
+    repo_name = request.json["repo_name"]
+    branch_name = request.json["branch_name"]
+    gs.delete_branch_service(repo_name, branch_name)
+    return {"message": f"Deleted branch {branch_name}."}, 200
+
+
+@bp.route("/view_all_branches", methods=["GET"])
+def view_all_branches():
+    repo_name = request.args.get("repo_name")
+    branches = gs.view_all_branches_service(repo_name)
+    return {"branches": branches}, 200
