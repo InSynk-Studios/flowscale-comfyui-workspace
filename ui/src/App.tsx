@@ -8,18 +8,17 @@ export default function App() {
 
   return (
     <>
-      {/* <div
+      <div
         style={{
           width: "100vh",
           position: "absolute",
           top: 0,
           left: 0,
-          right: 0,
         }}
-      > */}
+        className="z-[1]"
+      >
         <MainDrawer />
-      {/* </div> */}
-      
+      </div>
     </>
   );
 }
