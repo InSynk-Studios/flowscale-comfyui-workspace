@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, IconButton, ThemeProvider, theme } from "@primer/react";
+import { Box, Button, IconButton} from "@primer/react";
 import { ExplorerTab } from "../../explorer";
 import GitContextSwitchDropdown from "../../sourceControl/components/GitContextSwitchDropdown";
 import { SourceControlTab } from "../../sourceControl";
@@ -107,9 +107,9 @@ export const MainDrawer = () => {
   };
 
   return (
-    <ThemeProvider theme={theme} colorMode="night">
+    <>
       <Box
-        className="flex z-[10000000]"
+        className="flex"
         sx={{
           position: "absolute",
           top: 0,
@@ -318,6 +318,6 @@ export const MainDrawer = () => {
         isOpen={isSyncChangesModalOpen}
         isClose={() => setIsSyncChangesModalOpen(false)}
       />
-    </ThemeProvider>
+    </>
   );
 };

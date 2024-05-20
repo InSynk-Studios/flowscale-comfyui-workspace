@@ -10,12 +10,12 @@ export default function App() {
     <>
       <div
         style={{
-          width: "100vh",
+          width: "100%",
           position: "absolute",
           top: 0,
           left: 0,
+          zIndex: 1000000000,
         }}
-        className="z-[10000000]"
       >
         <MainDrawer />
       </div>
