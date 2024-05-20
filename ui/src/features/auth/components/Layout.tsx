@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import logo from '@/assets/logo.svg';
-import { Link } from '@/components/Elements';
-import { Head } from '@/components/Head';
+import logo from '../../../../public/flowscale.svg';
+import { Link } from '../../../components/Elements';
+import { Head } from '../../../components/Head';
 
 type LayoutProps = {
   children: React.ReactNode;

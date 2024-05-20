@@ -2,26 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; */
+@font-face {
+  font-family: "Avenir";
+  src: url("./fonts/AvenirNextCyr-Demi.ttf") format("ttf"),
+    url("./fonts/AvenirNextCyr-Demi.ttf") format("ttf");
+  font-style: normal;
+}
 
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+body {
+  font-family: "Avenir", sans-serif;
+}
 
-  color-scheme: light dark;
+:root {
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  margin: 0;
-  height: 100%;
-} */
+@layer utilities {
+  .border-gradient {
+    border-image-source: linear-gradient(
+      141.01deg,
+      #1659da 3.02%,
+      #16cfda 87.39%
+    );
+    /* border-radius: 24px; */
+    border-image-slice: 1;
+    border-style: solid;
+  }
+}
+
+/* Tabs component bottom bar */
+.Link__StyledLink-sc-14289xe-0.IjHZA::after {
+  background-color: transparent;
+  border-bottom: 3px solid;
+  border-image-source: linear-gradient(
+    141.01deg,
+    #1659da 3.02%,
+    #16cfda 87.39%
+  );
+  border-image-slice: 1;
+}
+
+.Dialog__StyledDialog-sc-uaxjsn-1.bobPJE {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.chrome-tabs.chrome-tabs-dark-theme {
+  background-color: #16191d;
+}
+
+.chrome-tabs-bottom-bar {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+/* Styles for WebKit browsers (e.g., Safari, Chrome) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(168, 167, 167);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(221, 218, 218, 0.4);
+}
