@@ -11,9 +11,8 @@ from urllib.parse import urlparse
 import subprocess
 import os
 from .version_control import update_version_if_outdated
-from .service.node_service import *
 
-WEB_DIRECTORY = "entry"
+WEB_DIRECTORY = "ui/dist"
 NODE_CLASS_MAPPINGS = {}
 __all__ = ['NODE_CLASS_MAPPINGS']
 version = "V1.0.0"
