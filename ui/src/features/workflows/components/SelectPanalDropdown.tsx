@@ -36,7 +36,6 @@ const SelectPanalDropdown: React.FC<SelectPanalDropdownProps> = ({
     <Box className="flex flex-col gap-2 w-full">
       {label && <div className="text-sm text-[#F2F2F2] font-medium">{label}</div>}
       <SelectPanel
-        overlayProps={{ zIndex: 10 }}
         title={title}
         renderAnchor={({
           children,
