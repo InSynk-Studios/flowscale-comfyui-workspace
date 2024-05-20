@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Avenir Next Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/AvenirNextCyr-Regular.ttf') format('ttf'),
+         url('./fonts/AvenirNextCyr-Regular.ttf') format('ttf');
+    /* Other font properties like font-weight, font-style can be added if needed */
+  }
+  
+  @font-face {
+    font-family: 'Avenir Next Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./fonts/AvenirNextCyr-Medium.ttf') format('ttf'),
+         url('./fonts/AvenirNextCyr-Medium.ttf') format('ttf');
+    /* Other font properties like font-weight, font-style can be added if needed */
+  }
+
+  @font-face {
+    font-family: 'Avenir Next Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./fonts/AvenirNextCyr-Bold.ttf') format('ttf'),
+         url('./fonts/AvenirNextCyr-Bold.ttf') format('ttf');
+    /* Other font properties like font-weight, font-style can be added if needed */
+  }
+
+  @font-face {
+    font-family: 'Avenir Next Demi';
+    font-style: normal;
+    /* font-weight: 600; */
+    src: url('./fonts/AvenirNextCyr-Demi.ttf') format('ttf'),
+         url('./fonts/AvenirNextCyr-Demi.ttf') format('ttf');
+    /* Other font properties like font-weight, font-style can be added if needed */
+  }
