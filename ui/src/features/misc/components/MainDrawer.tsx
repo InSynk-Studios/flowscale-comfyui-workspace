@@ -109,7 +109,7 @@ export const MainDrawer = () => {
   return (
     <ThemeProvider theme={theme} colorMode="night">
       <Box
-        className="flex z-50"
+        className="flex z-[10000000]"
         sx={{
           position: "absolute",
           top: 0,

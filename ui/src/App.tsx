@@ -15,7 +15,7 @@ export default function App() {
           top: 0,
           left: 0,
         }}
-        className="z-[1]"
+        className="z-[10000000]"
       >
         <MainDrawer />
       </div>
