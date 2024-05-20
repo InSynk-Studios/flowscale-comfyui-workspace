@@ -1,17 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
 
-const topbar = document.createElement("div.topbar");
-document.body.append(topbar);
-const App = React.lazy(() =>
-  import("./App.tsx").then(({ default: App }) => ({
-    default: App,
-  }))
-);
-
-ReactDOM.createRoot(topbar).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-);
+  </React.StrictMode>,
+)
