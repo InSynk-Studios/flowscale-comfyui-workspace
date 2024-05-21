@@ -109,7 +109,7 @@ export const MainDrawer = () => {
   return (
     <>
       <Box
-        className="flex"
+        className="flex pointer-events-none"
         // sx={{
         //   position: "absolute",
         //   top: 0,

@@ -1,5 +1,5 @@
 import React from "react";
-import LogoSvg from "../../../../public/flowscale.svg";
+import LogoSvg from "../../../assets/flowscale.svg";
 
 interface LogoProps {
   width?: string;

@@ -24,8 +24,6 @@
 // }
 
 import { useState } from "react";
-import { Button, TextInput } from "@primer/react";
-import { TriangleDownIcon, PlusIcon, FileIcon } from "@primer/octicons-react";
 import { MainDrawer } from "@/features/misc";
 
 type Route = "root" | "customNodes" | "recentFlows";
