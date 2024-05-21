@@ -110,12 +110,12 @@ export const MainDrawer = () => {
     <>
       <Box
         className="flex"
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-        }}
+        // sx={{
+        //   position: "absolute",
+        //   top: 0,
+        //   left: 0,
+        //   width: "100%",
+        // }}
       >
         {/* Left main sidebar */}
         <Sidebar
