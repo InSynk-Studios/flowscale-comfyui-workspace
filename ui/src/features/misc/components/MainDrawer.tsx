@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, IconButton} from "@primer/react";
+import { Box, Button, IconButton } from "@primer/react";
 import { ExplorerTab } from "../../explorer";
 import GitContextSwitchDropdown from "../../sourceControl/components/GitContextSwitchDropdown";
 import { SourceControlTab } from "../../sourceControl";
@@ -109,7 +109,7 @@ export const MainDrawer = () => {
   return (
     <>
       <Box
-        className="flex pointer-events-none"
+        className="flex absolute inset-0"
         // sx={{
         //   position: "absolute",
         //   top: 0,
