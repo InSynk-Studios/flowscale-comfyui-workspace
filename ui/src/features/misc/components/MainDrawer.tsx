@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Button, IconButton } from "@primer/react";
 import { ExplorerTab } from "../../explorer";
 import GitContextSwitchDropdown from "../../sourceControl/components/GitContextSwitchDropdown";
@@ -16,6 +16,7 @@ import { WorkflowPreviewModal } from "../../workflows/components/WorkflowPreview
 import Sidebar from "./Sidebar";
 import { CommitChangesModal } from "../../sourceControl/components/Modals/CommitChangesModal";
 import { SynchroniseChangesModal } from "../../sourceControl/components/Modals/SynchroniseChangesModal";
+import GithubLogin from "../../auth/components/GitHubLogin";
 
 const selectRepo = [
   { text: "project-repo", status: "connected", id: 1 },
@@ -38,6 +39,8 @@ const selectBranch = [
 ];
 
 export const MainDrawer = () => {
+  const [user, setUser] = useState(null);
+
   const [activeTab, setActiveTab] = useState<string>("explorer");
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [selectedRepo, setSelectedRepo] = useState<ItemInput | undefined>(
@@ -61,6 +64,14 @@ export const MainDrawer = () => {
     useState<boolean>(false);
   const [isSyncChangesModalOpen, setIsSyncChangesModalOpen] =
     useState<boolean>(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const user = params.get("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
   function uniqId() {
     return (
@@ -190,6 +201,10 @@ export const MainDrawer = () => {
                   openConnectRepoModal={() => setIsConnectRepoModalOpen(true)}
                 />
               )}
+
+              {/* <div className="mt-5 mx-auto">
+                <GithubLogin />
+              </div> */}
 
               {/* Footer with branch and sync */}
               <Box

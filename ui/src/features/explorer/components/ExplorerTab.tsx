@@ -1,5 +1,4 @@
 import { Box } from "@primer/react";
-import ExplorerTreeView from "./ExplorerTreeView";
 import PageHeaderWithActions from "./PageHeaderWithActions";
 import {
   ArrowClockwise,
@@ -8,6 +7,7 @@ import {
   MinusCircle,
 } from "phosphor-react";
 import { useState } from "react";
+import NewTreeView from "../../../features/misc/components/DragableTreeView";
 
 export const ExplorerTab = ({
   onWorkFlowClick = () => {},
@@ -30,13 +30,6 @@ export const ExplorerTab = ({
               type: "workflow",
               name: "segmentation-workflow.json",
               status: "workflow",
-              // component: (
-              //   <WorkflowCard
-              //     header={"Segmentation Workflow"}
-              //     description={"/segment-image"}
-              //     imageSrc={DemoImg}
-              //   />
-              // ),
             },
           ],
         },
@@ -69,8 +62,72 @@ export const ExplorerTab = ({
       ],
     },
   ];
+
   const [treeData, setTreeData] = useState(initialTreeData);
   const [isTreeExpanded, setIsTreeExpanded] = useState<boolean>(false);
+
+  const findNodeById = (nodes, id) => {
+    for (let node of nodes) {
+      if (node.id === id) {
+        return node;
+      }
+      if (node.children) {
+        const result = findNodeById(node.children, id);
+        if (result) {
+          return result;
+        }
+      }
+    }
+    return null;
+  };
+
+  const removeNodeById = (nodes, id) => {
+    return nodes.filter((node) => {
+      if (node.id === id) {
+        return false;
+      }
+      if (node.children) {
+        node.children = removeNodeById(node.children, id);
+      }
+      return true;
+    });
+  };
+
+  const insertNode = (nodes, targetId, nodeToInsert) => {
+    return nodes.map((node) => {
+      if (node.id === targetId) {
+        if (node.type === "workflow") {
+          return node; // Skip inserting children into files
+        }
+        return {
+          ...node,
+          children: node.children
+            ? [...node.children, nodeToInsert]
+            : [nodeToInsert],
+        };
+      }
+      if (node.children) {
+        node.children = insertNode(node.children, targetId, nodeToInsert);
+      }
+      return node;
+    });
+  };
+
+  const handleMoveNode = (draggedId, targetId) => {
+    const targetNode = findNodeById(treeData, targetId);
+    if (targetNode?.type === "file") {
+      console.warn("Cannot move a node into a file");
+      return;
+    }
+
+    const nodeToRemove = findNodeById(treeData, draggedId);
+    if (!nodeToRemove) return;
+
+    let newTreeData = removeNodeById(treeData, draggedId);
+    newTreeData = insertNode(newTreeData, targetId, nodeToRemove);
+
+    setTreeData(newTreeData);
+  };
 
   return (
     <>
@@ -102,13 +159,11 @@ export const ExplorerTab = ({
       </Box>
 
       <Box className="flex flex-col px-2 mt-2 overflow-y-auto max-h-[550px]">
-        <ExplorerTreeView
-          treeData={treeData}
-          setTreeData={setTreeData}
-          isTreeExpanded={isTreeExpanded}
-          setIsTreeExpanded={setIsTreeExpanded}
-          onWorkFlowClick={onWorkFlowClick}
+        <NewTreeView
+          data={treeData}
+          onMoveNode={handleMoveNode}
           previewButton={previewButton}
+          onWorkFlowClick={onWorkFlowClick}
         />
       </Box>
     </>
