@@ -127,7 +127,7 @@ export const PublishWorkflowModal: React.FC<DeployWorkflowModalProps> = ({
       isOpen={isOpen}
       onDismiss={isClose}
       customHeader={CustomHeader}
-      sx={{ width: "100%", height: "100vh" }}
+      sx={{ width: "100%", height: "100vh"}}
       showButtons={false}
     >
       <Box className="overflow-y-auto">

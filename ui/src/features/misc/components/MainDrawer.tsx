@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
-import { Box, Button, IconButton } from "@primer/react";
+import { Box, Button, IconButton, Link } from "@primer/react";
 import { ExplorerTab } from "../../explorer";
 import GitContextSwitchDropdown from "../../sourceControl/components/GitContextSwitchDropdown";
 import { SourceControlTab } from "../../sourceControl";
-import { ArrowsClockwise, CaretDoubleLeft, GitBranch } from "phosphor-react";
+import {
+  ArrowsClockwise,
+  CaretDoubleLeft,
+  Gear,
+  GitBranch,
+  Link as LinkIcon,
+  PlayCircle,
+} from "phosphor-react";
 import { ProfileTab } from "../../profile/components/ProfileTab";
 import { SettingsTab } from "../../settings/components/SettingsTab";
 import type { ItemInput } from "@primer/react/lib-esm/deprecated/ActionList/List";
@@ -17,6 +24,7 @@ import Sidebar from "./Sidebar";
 import { CommitChangesModal } from "../../sourceControl/components/Modals/CommitChangesModal";
 import { SynchroniseChangesModal } from "../../sourceControl/components/Modals/SynchroniseChangesModal";
 import GithubLogin from "../../auth/components/GitHubLogin";
+import Dropdown from "../../../components/Elements/Dropdown/Dropdown";
 
 const selectRepo = [
   { text: "project-repo", status: "connected", id: 1 },
@@ -156,7 +164,7 @@ export const MainDrawer = () => {
             >
               {activeTab === "explorer" && (
                 <Box
-                  className="py-3 pl-2 pr-3 flex items-center justify-between gap-3"
+                  className="py-3 pl-2 pr-14 flex items-center justify-between gap-3"
                   sx={{ borderBottom: "1px solid #343B45" }}
                 >
                   <GitContextSwitchDropdown
@@ -165,6 +173,56 @@ export const MainDrawer = () => {
                     selected={selectedRepo}
                     onSelectedChange={setSelectedRepo}
                   />
+                  <Dropdown buttonLabel="Publish">
+                    <Box className="flex flex-col p-3 gap-4">
+                      <Box className="">Changes</Box>
+                      <Box className="py-3 flex flex-col gap-3">
+                        {Array.from({ length: 2 }).map((_, index) => (
+                          <Box key={index} className="flex gap-3">
+                            <div className="flex flex-col gap-1">
+                              <Box>segmentation-workflow-gradio</Box>
+                              <Box className="text-[#A5A5AD] text-xs font-normal">
+                                Updated 3d ago
+                              </Box>
+                            </div>
+                          </Box>
+                        ))}
+                      </Box>
+                      <Button
+                        sx={{
+                          borderRadius: "24px",
+                          fontSize: "16px",
+                          padding: "10px 16px",
+                          backgroundColor: "#fff",
+                          color: "#16191D",
+                          "&:hover": {
+                            color: "#C4C4CA",
+                            border: "1px solid #343B45",
+                          },
+                        }}
+                      >
+                        Publish
+                      </Button>
+                      <Box
+                        sx={{ borderTop: "1px solid #343B45" }}
+                        className="mt-2 py-3 flex flex-col gap-3"
+                      >
+                        {Array.from({ length: 2 }).map((_, index) => (
+                          <Box key={index} className="flex gap-3">
+                            <LinkIcon />
+                            <div className="flex flex-col gap-1">
+                              <Link inline={true} href="#">
+                                segmentation-workflow-gradio
+                              </Link>
+                              <Box className="text-[#A5A5AD] text-xs font-normal">
+                                Updated 3d ago
+                              </Box>
+                            </div>
+                          </Box>
+                        ))}
+                      </Box>
+                    </Box>
+                  </Dropdown>
                 </Box>
               )}
               {/* Collapse Button */}
@@ -280,7 +338,18 @@ export const MainDrawer = () => {
               sx={{ borderTop: "1px solid #343B45" }}
               className="flex justify-end gap-2 p-3"
             >
+              <IconButton
+                aria-label={"Workflow Settings"}
+                icon={Gear}
+                onClick={() => setIsCreateProjectRepoModalOpen(true)}
+                unsafeDisableTooltip={false}
+                // variant="outline"
+                sx={{
+                  fontSize: "16px",
+                }}
+              />
               <Button
+                leadingVisual={PlayCircle}
                 onClick={() => setIsPublishWorkflowModalOpen(true)}
                 sx={{
                   borderRadius: "24px",
@@ -293,7 +362,7 @@ export const MainDrawer = () => {
                   },
                 }}
               >
-                Publish
+                Live Demo
               </Button>
             </Box>
           </Box>

@@ -25,8 +25,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       trailingAction={null}
       sx={{
         borderRadius: "24px",
-        fontSize: "16px",
-        padding: "18px 16px",
+        fontSize: "14px",
+        padding: "14px 16px",
         backgroundColor: "#fff",
         color: "#16191D",
         "&:hover": {
