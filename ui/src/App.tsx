@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MainDrawer } from "@/features/misc";
+import { MainDrawer } from "./features/misc";
 import "./fonts.css";
 
 type Route = "root" | "customNodes" | "recentFlows";
@@ -18,7 +18,7 @@ export default function App() {
       }}
     >
       <div
-        className="tw-class"
+        className=""
         style={{
           position: "fixed",
           top: 0,
